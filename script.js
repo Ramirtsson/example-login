@@ -113,10 +113,11 @@ async function insertUser(name,lastname,age,email,password)
 
 }
 
-async function updateUser(name,lastname,age,email,password)
+async function updateUser(id,name,lastname,age,email,password)
 {
     const form =  new FormData();
 
+    form.append("id",id);
     form.append("name",name);
     form.append("lastname",lastname);
     form.append("age",age);
