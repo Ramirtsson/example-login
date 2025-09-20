@@ -137,6 +137,7 @@ async function updateUser(id,name,lastname,age,email,password)
 // getUser(4);
 // getUserByEmail();
 // getUserByName();
+
 async function deleteUser(id) {
  const form =  new FormData();
     form.append("id",id);
@@ -148,4 +149,12 @@ async function deleteUser(id) {
     console.log(data);
 }
 
-deleteUser(6)
+// deleteUser(6)
+
+
+
+// Swal.fire({
+//   title: "Vamos!",
+//   text: "con todo!!",
+//   icon: "success"
+// });
