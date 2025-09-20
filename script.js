@@ -137,3 +137,15 @@ async function updateUser(id,name,lastname,age,email,password)
 // getUser(4);
 // getUserByEmail();
 // getUserByName();
+async function deleteUser(id) {
+ const form =  new FormData();
+    form.append("id",id);
+    const response = await fetch('./users/deleteUser.php',{
+                                method:'POST',
+                                body: form
+                            });
+    const data = await response.json();
+    console.log(data);
+}
+
+deleteUser(6)
