@@ -3,14 +3,14 @@
 require_once "../bd/bd.php";
 
 $pdo = getConnection();
-//como obtenerlos
 
-try{
+try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+
     $query = $pdo->prepare("
-        INSERT INTO users (name, lastname, age, email, password) 
-        VALUES (:name, :lastname, :age, :email, :password)
+        UPDATE users SET name = :name,  lastname = :lastname, age = :age, 
+            email = :email, password = :password
+        WHERE id = :id
     ");
 
     $query->execute([
@@ -18,12 +18,12 @@ try{
         ':lastname' => $_POST['lastname'],
         ':age'      => $_POST['age'],
         ':email'    => $_POST['email'],
-        ':password' => $_POST['password']
+        ':password' => $_POST['password'],
+        ':id'       => $_POST['id'] 
     ]);
 
-    echo json_encode(["result"=>"✅ Usuario insertado correctamente"]);
+    echo json_encode(["result"=>"✅ Usuario actualizado correctamente"]);
 
-    // echo json_encode($query);
-}catch(PDOException $e){
+} catch(PDOException $e) {
     echo "❌ Error en la consulta: " . $e->getMessage();
 }

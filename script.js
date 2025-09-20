@@ -113,6 +113,26 @@ async function insertUser(name,lastname,age,email,password)
 
 }
 
+async function updateUser(id,name,lastname,age,email,password)
+{
+    const form =  new FormData();
+
+    form.append("id",id);
+    form.append("name",name);
+    form.append("lastname",lastname);
+    form.append("age",age);
+    form.append("email",email);
+    form.append("password",password);
+
+    const response = await fetch('./users/updateUser.php',{
+                                method:'POST',
+                                body: form
+                            });
+    const data = await response.json();
+    console.log(data);
+
+}
+//updateUser();
 // getUsers();
 // getUser(4);
 // getUserByEmail();
