@@ -158,3 +158,80 @@ async function deleteUser(id) {
 //   text: "con todo!!",
 //   icon: "success"
 // });
+
+
+
+async function registVisitor(name,enterprise,post,email,phone,city,reason)
+{
+    const form =  new FormData();
+
+    form.append("name",name);
+    form.append("enterprise",enterprise);
+    form.append("post",post);
+    form.append("email",email);
+    form.append("phone",phone);
+    form.append("city",city);
+    form.append("reason",reason);
+
+    const response = await fetch('./visitors/registVisitor.php',{
+                                method:'POST',
+                                body: form
+                            });
+    const data = await response.json();
+    console.log(data);
+
+    if(data.code === 201){
+
+        Swal.fire({
+        title: "Registro correcto",
+        text: data.message,
+        icon: "success"
+        });
+    }else {
+        Swal.fire({
+                title: "Registro feik",
+                text: data.message,
+                icon: "error"
+                });
+    }
+}
+
+async function editVisitor(name,enterprise,post,email,id,phone,city,reason)
+{
+    const form =  new FormData();
+
+    form.append("name",name);
+    form.append("enterprise",enterprise);
+    form.append("post",post);
+    form.append("email",email);
+    form.append("id",id);
+    form.append("phone",phone);
+    form.append("city",city);
+    form.append("reason",reason);
+
+    const response = await fetch('./visitors/editVisitor.php',{
+                                method:'POST',
+                                body: form
+                            });
+    const data = await response.json();
+    console.log(data);
+
+    if(data.code === 201){
+
+        Swal.fire({
+        title: "Visitante actualizado",
+        text: data.message,
+        icon: "success"
+        });
+    }else {
+        Swal.fire({
+                title: "Actualizacion fallida",
+                text: data.message,
+                icon: "error"
+                });
+    }
+
+    }
+
+// editVisitor("hola","adios","xd","xd@gmail.com",1,"5512345678","lol que mal");
+// registVisitor("luis","middleby","programmer","luis@midd.com","5544931280","Mex","Proyecto");
