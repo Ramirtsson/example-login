@@ -158,3 +158,41 @@ async function deleteUser(id) {
 //   text: "con todo!!",
 //   icon: "success"
 // });
+
+
+async function registration(name,enterprise,post,email,phone,city,reason)
+{
+   
+    const form =  new FormData();
+
+    form.append("name",name);
+    form.append("enterprise",enterprise);
+    form.append("post",post);
+    form.append("email",email);
+    form.append("phone",phone);
+    form.append("city",city);
+    form.append("reason",reason);
+
+    const response = await fetch('./visitantes/registration.php',{
+                                method:'POST',
+                                body: form
+                            });
+    const data = await response.json();
+    console.log(data);
+    
+
+    if(data.code === 201){
+        Swal.fire({
+        title: "bien",
+        text: data.message,
+        icon: "success"
+    });
+    }
+    if(data.code === 500){
+        Swal.fire({
+        title: "mal",
+        text: data.message,
+        icon: "error"
+    });
+    }
+}
