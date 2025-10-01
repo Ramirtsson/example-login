@@ -159,8 +159,6 @@ async function deleteUser(id) {
 //   icon: "success"
 // });
 
-
-
 async function registVisitor(name,enterprise,post,email,phone,city,reason)
 {
     const form =  new FormData();
@@ -237,7 +235,6 @@ async function editVisitor(name,enterprise,post,email,id,phone,city,reason)
 // registVisitor("luis","middleby","programmer","luis@midd.com","5544931280","Mex","Proyecto");
 
 
-
 async function registration(name,enterprise,post,email,phone,city,reason)
 {
    
@@ -275,9 +272,18 @@ async function registration(name,enterprise,post,email,phone,city,reason)
     }
 }
 
-   async function getVisitor(){
+
+async function getVisitor(){
     const response = await fetch('./visitors/getVisitors.php'); 
     const data = await response.json();
     console.log(data)
 }
 getVisitor();
+
+
+async function getVisit(id){
+    const response = await fetch('./visitantes/getVisit.php?id='+id);
+    const data = await response.json();
+    console.log(data.code);
+}
+getVisit(2);
