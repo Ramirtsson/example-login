@@ -274,3 +274,10 @@ async function registration(name,enterprise,post,email,phone,city,reason)
     });
     }
 }
+
+   async function getVisitor(){
+    const response = await fetch('./visitors/getVisitors.php'); 
+    const data = await response.json();
+    console.log(data)
+}
+getVisitor();
